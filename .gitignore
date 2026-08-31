@@ -1,0 +1,6 @@
+.env
+venv/
+data/raw/*.csv
+data/cleaned/*.csv
+__pycache__/
+.DS_Store
