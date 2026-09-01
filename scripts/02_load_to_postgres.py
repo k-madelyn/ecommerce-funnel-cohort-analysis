@@ -20,7 +20,7 @@ db_password = os.getenv("DB_PASSWORD")
 # ================================
 # READ THE CLEANED DATA INTO A TABLE OBJECT
 # ================================
-cleaned_data = pd.read_csv('clean_ecom_events.csv')
+cleaned_data = pd.read_csv('data/cleaned/clean_ecom_events.csv')
 
 # ================================
 # CONNECT TO POSTGRES AND PREPARE FOR ANALYSIS
