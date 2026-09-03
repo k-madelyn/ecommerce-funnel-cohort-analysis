@@ -3,7 +3,7 @@
 # ================================
 import pandas as pd
 from dotenv import load_dotenv
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, types
 import os
 
 # ================================
@@ -20,7 +20,7 @@ db_password = os.getenv("DB_PASSWORD")
 # ================================
 # READ THE CLEANED DATA INTO A TABLE OBJECT
 # ================================
-cleaned_data = pd.read_csv('data/cleaned/clean_ecom_events.csv')
+cleaned_data = pd.read_csv('data/cleaned/clean_ecom_events.csv', parse_dates=['event_time'])
 
 # ================================
 # CONNECT TO POSTGRES AND PREPARE FOR ANALYSIS
@@ -28,7 +28,13 @@ cleaned_data = pd.read_csv('data/cleaned/clean_ecom_events.csv')
 connection_string = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 engine = create_engine(connection_string)
 
-cleaned_data.to_sql("events", engine, if_exists='replace', index=False)
+cleaned_data.to_sql(
+    "events", 
+    engine, 
+    if_exists='replace', 
+    index=False,
+    dtype={'event_time': types.TIMESTAMP}
+)
 
 # success message
 print("Data loaded successfully into Postgres, ready for analysis.")
