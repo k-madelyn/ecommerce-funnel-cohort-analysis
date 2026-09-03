@@ -33,7 +33,7 @@ Duplicate and blank rows were removed. Several data issues were found and noted 
 - 21,332 products with some $0 mixed in with real prices
     - 'price_corrected' column added to flag changed prices, median price for the same product used to replace any $0 prices
 - 5 products with negative prices
-    - 'negative_prices' column added to flag, will be excluded from price calculations
+    - 'negative_price' column added to flag, will be excluded from price calculations
 - 'category_code' missing in 98% of rows (non-random)
     - any calculations done with this column will reference the 'category_id' (near complete coverage) and be used exploratorily
 - 8% of purchase events without valid cart events prior
