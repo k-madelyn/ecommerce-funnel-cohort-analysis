@@ -27,3 +27,5 @@ SELECT month,
     ROUND(100.0 * sessions_with_purchase / NULLIF(sessions_with_view, 0), 2) AS view_to_purchase_pct
 FROM monthly_sessions
 ORDER BY month ASC;
+
+SELECT * FROM monthly_conversion_rate;
