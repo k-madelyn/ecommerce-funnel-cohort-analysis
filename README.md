@@ -56,7 +56,7 @@ Cart-to-purchase has the steeper percentage drop-off (84.21% vs. 76.97%), but vi
 ---
 ## 5. Price & Order Value Analysis
 
-**Average Order Value by month**
+***Average Order Value by month***
 
 | Month | Average Order Value | Median Order Value |
 | --- | --- | --- |
@@ -71,7 +71,7 @@ Cart-to-purchase has the steeper percentage drop-off (84.21% vs. 76.97%), but vi
 ### Key Insight
 AOV is stable from month to month with no strong upward or downward trend. The consistent gap between average and median indicates a right-skewed distribution — a small number of high value orders pulling the average higher than the typical order.
 
-**Cart abandonment by price quartile**
+***Cart abandonment by price quartile***
 
 | Price Quartile | Sessions w/ Cart | Abandonment Rate |
 | --- | --- | --- |
