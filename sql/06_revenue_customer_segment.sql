@@ -1,3 +1,5 @@
+CREATE OR REPLACE VIEW revenue_customer_segment AS
+
 WITH rfm_metrics AS (
     SELECT
         COUNT(*) AS frequency,
@@ -33,3 +35,5 @@ SELECT
 FROM rfm_split
 GROUP BY r_tier, f_tier, m_tier
 ORDER BY total_revenue DESC;
+
+SELECT * FROM revenue_customer_segment;

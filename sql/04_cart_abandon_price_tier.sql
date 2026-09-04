@@ -1,3 +1,5 @@
+CREATE OR REPLACE VIEW cart_abandon_price_tier AS
+
 WITH price_quartiles AS (
     SELECT 
         DISTINCT product_id, price, 
@@ -23,3 +25,4 @@ FROM cart_tier_sessions
 GROUP BY price_quartile
 ORDER BY price_quartile;
 
+SELECT * FROM cart_abandon_price_tier;

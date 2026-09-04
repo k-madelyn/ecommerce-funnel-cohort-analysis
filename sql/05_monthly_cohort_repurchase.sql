@@ -1,3 +1,5 @@
+CREATE OR REPLACE VIEW monthly_cohort_repurchase AS
+
 WITH user_first_event AS (
     SELECT user_id, MIN(event_time) AS first_event,
         DATE_TRUNC('month', MIN(event_time))::DATE AS month
@@ -24,3 +26,5 @@ FROM repeat_purchases
 GROUP BY month
 HAVING month <= (SELECT MAX(event_time)::DATE - INTERVAL '30 days' FROM events)
 ORDER BY month;
+
+SELECT * FROM monthly_cohort_repurchase;
