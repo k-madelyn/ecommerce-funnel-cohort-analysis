@@ -1,4 +1,4 @@
-CREATE OR REPLACE VIEW monthly_cohort_repurchase AS
+CREATE OR REPLACE VIEW monthly_cohort_30day_conversion AS
 
 WITH user_first_event AS (
     SELECT user_id, MIN(event_time) AS first_event,
@@ -7,24 +7,25 @@ WITH user_first_event AS (
     GROUP BY user_id
 ),
 
-repeat_purchases AS (
+made_purchases AS (
     SELECT u.user_id, u.first_event, u.month,
         MAX(CASE WHEN e.event_type = 'purchase'
             AND e.event_time > u.first_event
             AND e.event_time <= u.first_event + INTERVAL '30 days'
             THEN 1 ELSE 0 END) AS purchase_within_30_days
     FROM events AS e JOIN user_first_event AS u ON e.user_id = u.user_id
-    WHERE e.event_type = 'purchase'
+    WHERE e.event_type = 'purchase' AND e.negative_price = FALSE
     GROUP BY u.user_id, u.first_event, u.month
 )
 
 SELECT month,
     COUNT(*) AS cohort_size,
-    SUM(purchase_within_30_days) AS customers_repeat_purchase,
-    ROUND(100.0 * SUM(purchase_within_30_days) / NULLIF(COUNT(*), 0), 2) AS repeat_purchase_pct
-FROM repeat_purchases
+    SUM(purchase_within_30_days) AS customers_who_converted,
+    ROUND(100.0 * SUM(purchase_within_30_days) / NULLIF(COUNT(*), 0), 2) AS purchase_within_30d_pct
+FROM made_purchases
 GROUP BY month
 HAVING month <= (SELECT MAX(event_time)::DATE - INTERVAL '30 days' FROM events)
 ORDER BY month;
 
-SELECT * FROM monthly_cohort_repurchase;
+SELECT * FROM monthly_cohort_30day_conversion;
+
