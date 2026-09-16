@@ -17,15 +17,14 @@ view_purchase_calc AS (
 ),
 rank_calc AS (
     SELECT
-        category_id,
+        category_id, view_to_purchase_pct,
         ROW_NUMBER() OVER (ORDER BY view_to_purchase_pct DESC) AS top_rank,
         ROW_NUMBER() OVER (ORDER BY view_to_purchase_pct ASC) AS bottom_rank
     FROM view_purchase_calc
 )
 
 SELECT
-    category_id,
-    top_rank AS rank
+    top_rank AS rank, category_id, view_to_purchase_pct
 FROM rank_calc
 WHERE top_rank <= 5 OR bottom_rank <= 5
 ORDER BY top_rank ASC, bottom_rank ASC;
