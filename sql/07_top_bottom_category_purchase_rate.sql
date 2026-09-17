@@ -11,20 +11,23 @@ WITH views_and_purchases AS (
 view_purchase_calc AS (
     SELECT
         category_id,
-        ROUND(100.0 * purchases_per_category / NULLIF(views_per_category, 0), 2) AS view_to_purchase_pct
+        ROUND(100.0 * purchases_per_category / NULLIF(views_per_category, 0), 2) AS view_to_purchase_pct,
+        views_per_category, purchases_per_category
     FROM views_and_purchases
     WHERE views_per_category > 400
 ),
 rank_calc AS (
     SELECT
-        category_id, view_to_purchase_pct,
+        category_id, view_to_purchase_pct, views_per_category, purchases_per_category,
         ROW_NUMBER() OVER (ORDER BY view_to_purchase_pct DESC) AS top_rank,
         ROW_NUMBER() OVER (ORDER BY view_to_purchase_pct ASC) AS bottom_rank
     FROM view_purchase_calc
 )
 
 SELECT
-    top_rank AS rank, category_id, view_to_purchase_pct
+    top_rank AS rank, category_id, view_to_purchase_pct,
+    views_per_category AS total_views,
+    purchases_per_category AS total_purchases
 FROM rank_calc
 WHERE top_rank <= 5 OR bottom_rank <= 5
 ORDER BY top_rank ASC, bottom_rank ASC;
