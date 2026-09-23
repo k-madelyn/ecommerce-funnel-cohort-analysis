@@ -53,8 +53,47 @@ Cart-to-purchase has the steeper percentage drop-off (84.21% vs. 76.97%), but vi
 
 *Note: Purchase counts include the purchase events with no prior valid cart event in the same session. This is being treated as a legitimate potential purchase path rather than a data logging error.*
 
+***Overall Conversion Rate by Month***
+
+| Month | Total Views | Total Purchases | Conversion Rate |
+| --- | --- | --- | --- |
+| Oct 2019 | 188,860 | 35,563 | 18.83%
+| Nov 2019 | 152,920 | 22,621 | 14.70%
+| Dec 2019 | 135,002 | 15,006 | 11.12%
+| Jan 2020 | 147,037 | 15,123 | 10.29%
+| Feb 2020 | 124,045 | 10,773 | 8.68%
+
+### Key Insight
+Overall views, purchases, and conversion rates declined from October 2019 to February 2020. Despite the data set spanning the full holiday shopping season (Black Friday and winter holidays), no sustained lift is seen in November and December. This is a notable discovery, typically holiday shopping sees a rise in both views and purchases. Without acquisition or campaign data, I am unable to determine potential causes for this unusual trend, but recommend investigating traffic/demand, change in marketing activity, or data collection gap.
+
+***Cart abandonment by price quartile***
+
+| Price Quartile | Sessions w/ Cart | Abandonment Rate |
+| --- | --- | --- |
+| 1 (cheapest) | 454,510 | 78.67% |
+| 2 | 513,190 | 79.93% |
+| 3 | 515,424 | 79.45% |
+| 4 (most expensive) | 447,529 | 76.66% |
+
+### Key Insight
+Abandonment is consistent across price tiers, suggesting pricing tier is not a primary reason for cart abandonment. This points toward other factors (shipping cost, payment options, checkout page friction) as more likely reasons for cart abandonment.
+
 ---
 ## 5. Price & Order Value Analysis
+
+***Overall price distribution of products***
+
+| Quartile/Position | Price
+| --- | ---
+| Min | 0.05 
+| Q1 (25%) | 2.62
+| Median | 4.59
+| Average | 7.33
+| Q3 (75%) | 7.70
+| Max | 327.78
+
+### Key Insight
+The average product price ($7.33) is significantly higher than the median ($4.59), with the third quartile price at $7.70. This indicates a right-skewed distribution, where a small number of high priced items pull the average up.
 
 ***Average Order Value by month***
 
@@ -71,20 +110,83 @@ Cart-to-purchase has the steeper percentage drop-off (84.21% vs. 76.97%), but vi
 ### Key Insight
 AOV is stable from month to month with no strong upward or downward trend. The consistent gap between average and median indicates a right-skewed distribution — a small number of high value orders pulling the average higher than the typical order.
 
-***Cart abandonment by price quartile***
+---
+## 6. Cohort Retention Analysis
 
-| Price Quartile | Sessions w/ Cart | Abandonment Rate |
-| --- | --- | --- |
-| 1 (cheapest) | 454,510 | 78.67% |
-| 2 | 513,190 | 79.93% |
-| 3 | 515,424 | 79.45% |
-| 4 (most expensive) | 447,529 | 76.66% |
+***Monthly Cohort Retention***
+
+| Initial Interaction Month | Cohort Size | Customers Who Converted | Purchase within 30 days Rate |
+| --- | --- | --- | --- |
+| Oct 2019 | 38,290 | 28,788 | 75.18% |
+| Nov 2019 | 25,041 | 21,574 | 86.15% |
+| Dec 2019 | 17,358 | 15,436 | 88.93% |
+| Jan 2020 | 17,241 | 16,463 | 95.49% |
 
 ### Key Insight
-Abandonment is consistent across price tiers, suggesting pricing tier is not a primary reason for cart abandonment. This points toward other factors (shipping cost, payment options, checkout page friction) as more likely reasons for cart abandonment.
+The conversion rate within 30 days rose consistently across every cohort from October 2019 (75.18%) to January 2020 (95.49%). However, there is a steady decline in new users, from ~38,000 to ~17,000, a 55% drop. This mirrors a similar overall traffic drop seen in the Overall Funnel Health section. This could suggest the business is reaching a smaller and more highly-converting audience rather than generally increasing conversion for a growing user base. Further information on acquisition channels could determine quality of users in each cohort.
 
 ---
-## 6. Business Recommendations
+## 7. Customer Segmentation (RFM)
+
+***Revenue by Customer Segment (Recency, Frequency, and Monetary Tiers)***
+- Top 5 segments ordered by greatest revenue
+
+| R-F-M Tiers | Number of Customers | Total Revenue |
+| --- | --- | --- |
+| 4-4-4 | 7,537 | $1,565,966.68 |
+| 3-4-4 | 5,236 | $834,501.79 |
+| 2-4-4 | 4,130 | $582,666.50 |
+| 1-4-4 | 2,882 | $385,941.90 |
+| 2-3-3 | 2,872 | $126,482.75 |
+
+### Key Insight
+The highest-revenue customers are the most frequent and highest-spending customers, even without a recent purchase. Event the segment with the least recency (1-4-4) generated more revenue at $385,941.90 then the next segment (2-3-3) at $126,482.75. This indicates high frequency and spend are better indicators of customer value than how recently a customer last purchased. A potential strong win-back opportunity is the 1-4-4 segment, they have a proven tendency to purchase regularly with a high overall revenue but have recently gone quiet. A tiered approach reaction campaign to match the recency measure per cohort might be a worthwhile avenue to explore.
+
+---
+## 8. Category Level Findings
+Category code was missing in 98% of rows, so actual product classification was difficult. Therefore, all category findings will be in reference to the category id number and could be connected back to actual products in a real business scenario.
+
+***Categories Ranked by View-to-Purchase Rate***
+- Top and bottom five categories
+
+| Rank | Category Id | View to Purchase Rate | Views | Purchases
+| --- | --- | --- | --- | ---|
+| 1 | 1487580011476025461 | 73.39% | 977 | 717 |
+| 2 | 1487580007592100809 | 67.38% | 4454 | 3001 |
+| 3 | 1487580009622143014 | 66.87% | 2137 | 1429 |
+| 4 | 1487580010821714008 | 50.82% | 9524 | 4840 |
+| 5 | 2055161088059638328 | 50.36% | 8442 | 4251 |
+| — | — | — |
+| 420 | 1487580005025186644 | 0.53% | 3044 | 16 |
+| 421 | 1487580006157648777 | 0.42% | 480 | 2 |
+| 422 | 1547480590851244887 | 0.29% | 1389 | 4 |
+| 423 | 1487580009739583530 | 0.0% | 720 | 0 |
+| 424 | 1487580014093271270 | 0.0% | 1303 | 0 |
+
+### Key Insight
+The top 5 categories convert at 50%-73%, far beyond the typical e-commerce rate of approximately 1%-5%. A concerning 0% retention rate appears in the bottom two ranks, indicating an issue with the product or product page considering the decent number of product page views. The significant spread between the top and bottom performing categories indicates a possible structural difference in the view to purchase process. A manual review of these specific product pages to determine areas to reduce friction and promote better conversion could increase the conversion rates.
+
+***Categories by Cohort Retention***
+- Top 10 categories
+
+| Rank | Category Id | Retention Rate | Cohort Size | Repeat Purchasers
+| --- | --- | --- | --- | --- |
+| 1 | 2151191071051219817 | 13.16% | 1,611 | 212 |
+| 2 | 1487580007675986893 | 9.57% | 13,437 | 1,286 |
+| 3 | 1487580006317032337 | 9.44% | 15,927 | 1,504 |
+| 4 | 1783999068909863670 | 9.22% | 3,711 | 342 |
+| 5 | 1487580005092295511 | 8.97% | 23,478 | 2,196 |
+| 6 | 1487580004916134735 | 8.90% | 4,348 | 387 |
+| 7 | 1911999801088541491 | 8.89% | 135 | 12 |
+| 8 | 2193074740619379535 | 8.71% | 264 | 23 |
+| 9 | 2018395024110125980 | 8.66% | 335 | 29 |
+| 10 | 1487580013522845895 | 8.33% | 4,864 | 405 |
+
+### Key Insight
+Within the top ten categories based on retention, the most statistically reliable (1,600+ initial purchase cohort size) categories have retention rates sitting within 8.33%-9.57%. Category 2151191071051219817 stands out uniquely at 13.16% retention. This warrants referencing the actual category contents to determine if the high relative retention is related to pricing structure, replenishable/consumable product type, or other driver that could inform future merchandising/promotion strategies for similar categories.
+
+---
+## 9. Business Recommendations
 ### Priority 1: Investigate checkout/cart friction over pricing changes
 Cart abandonment (76.7%-79.9%) is essentially flat across price tiers, so pricing adjustments are unlikely to cause major changes to abandonment on their own. Effort is better directed at checkout-flow friction (shipping cost transparency, payment options, form complexity) than at price positioning.
 
@@ -92,7 +194,7 @@ Cart abandonment (76.7%-79.9%) is essentially flat across price tiers, so pricin
 While cart-to-purchase has higher percentage drop-off, view-to-cart accounts for larger session loss (3.3M). A small percentage-point improvement here would recover more total sessions than an equivalent improvement for the cart-to-purchase rate.
 
 ---
-## 7. Tech Stack & Reproducibility
+## 10. Tech Stack & Reproducibility
 - **Cleaning:** Python (pandas)
 - **Database:** PostgreSQL
 - **Analysis:** SQL
@@ -105,5 +207,5 @@ While cart-to-purchase has higher percentage drop-off, view-to-cart accounts for
 5. Run the SQL files in `sql/` against the loaded database
 
 ---
-## 8. Why This Project
-This project demonstrates end-to-end funnel and revenue analysis on large and messy real-world dataset — including data-quality investigation and judgment calls, SQL-based business-question answering, and translating findings into evidence-based recommendations.
+## 11. Why This Project
+This project demonstrates end-to-end funnel and revenue analysis on large and messy real-world dataset, including data-quality investigation and judgment calls, SQL-based business-question answering, and translating findings into evidence-based recommendations.
