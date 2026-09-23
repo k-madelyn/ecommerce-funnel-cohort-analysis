@@ -22,7 +22,7 @@ There are a few missing pieces from this dataset that prevent certain types of a
 3. No information on why a user did not purchase or why they dropped off.
 4. Single device tracking for sessions - no way to evaluate if the same user is using a different device.
 
----
+
 ## 3. Data Cleaning
 
 Duplicate and blank rows were removed. Several data issues were found and noted in the final clean events table.
@@ -39,7 +39,7 @@ Duplicate and blank rows were removed. Several data issues were found and noted 
 - 8% of purchase events without valid cart events prior
     - could be an indicator of a repurchase or buy now flow, flagged with 'purchase_without_cart' column
 
----
+
 ## 4. Funnel Health Analysis
 
 | Funnel Stage | Sessions | Conversion from prior stage |
@@ -78,7 +78,7 @@ Overall views, purchases, and conversion rates declined from October 2019 to Feb
 ### Key Insight
 Abandonment is consistent across price tiers, suggesting pricing tier is not a primary reason for cart abandonment. This points toward other factors (shipping cost, payment options, checkout page friction) as more likely reasons for cart abandonment.
 
----
+
 ## 5. Price & Order Value Analysis
 
 ***Overall price distribution of products***
@@ -110,7 +110,7 @@ The average product price ($7.33) is significantly higher than the median ($4.59
 ### Key Insight
 AOV is stable from month to month with no strong upward or downward trend. The consistent gap between average and median indicates a right-skewed distribution — a small number of high value orders pulling the average higher than the typical order.
 
----
+
 ## 6. Cohort Retention Analysis
 
 ***Monthly Cohort Retention***
@@ -125,7 +125,7 @@ AOV is stable from month to month with no strong upward or downward trend. The c
 ### Key Insight
 The conversion rate within 30 days rose consistently across every cohort from October 2019 (75.18%) to January 2020 (95.49%). However, there is a steady decline in new users, from ~38,000 to ~17,000, a 55% drop. This mirrors a similar overall traffic drop seen in the Overall Funnel Health section. This could suggest the business is reaching a smaller and more highly-converting audience rather than generally increasing conversion for a growing user base. Further information on acquisition channels could determine quality of users in each cohort.
 
----
+
 ## 7. Customer Segmentation (RFM)
 
 ***Revenue by Customer Segment (Recency, Frequency, and Monetary Tiers)***
@@ -142,7 +142,7 @@ The conversion rate within 30 days rose consistently across every cohort from Oc
 ### Key Insight
 The highest-revenue customers are the most frequent and highest-spending customers, even without a recent purchase. Event the segment with the least recency (1-4-4) generated more revenue at $385,941.90 then the next segment (2-3-3) at $126,482.75. This indicates high frequency and spend are better indicators of customer value than how recently a customer last purchased. A potential strong win-back opportunity is the 1-4-4 segment, they have a proven tendency to purchase regularly with a high overall revenue but have recently gone quiet. A tiered approach reaction campaign to match the recency measure per cohort might be a worthwhile avenue to explore.
 
----
+
 ## 8. Category Level Findings
 Category code was missing in 98% of rows, so actual product classification was difficult. Therefore, all category findings will be in reference to the category id number and could be connected back to actual products in a real business scenario.
 
@@ -185,15 +185,26 @@ The top 5 categories convert at 50%-73%, far beyond the typical e-commerce rate 
 ### Key Insight
 Within the top ten categories based on retention, the most statistically reliable (1,600+ initial purchase cohort size) categories have retention rates sitting within 8.33%-9.57%. Category 2151191071051219817 stands out uniquely at 13.16% retention. This warrants referencing the actual category contents to determine if the high relative retention is related to pricing structure, replenishable/consumable product type, or other driver that could inform future merchandising/promotion strategies for similar categories.
 
----
+
 ## 9. Business Recommendations
 ### Priority 1: Investigate checkout/cart friction over pricing changes
 Cart abandonment (76.7%-79.9%) is essentially flat across price tiers, so pricing adjustments are unlikely to cause major changes to abandonment on their own. Effort is better directed at checkout-flow friction (shipping cost transparency, payment options, form complexity) than at price positioning.
 
-### Priority 2: Prioritize view-to-cart volume alongside cart-to-purchase rate
+### Priority 2: Investigate declining new-user acquisition
+Two analyses indicate one underlying issue: monthly views and conversion rate both declined from October 2019 - February 2020 (section 4). Cohort size dropped over 55% during that same time period, even as 30-day cohort conversion rate rose (section 6). This suggests the business is retaining a smaller, higher-quality audience rather than growing overall user base. With acquisition and campaign data (not available in this dataset), would help determine if this is a deliberate shift in targeting, market-demand issue, or a data collection issue. This has potential to drastically increase top-of-funnel metrics and revenue potential, so it is worth prioritization.
+
+### Priority 3: Launch a win-back campaign targeting the 1-4-4 RFM segment
+This segment has a proven history of frequent high-value purchasing, and has generated $385,941.90 in historical revenue - more than any other segment other than the top F4-M4 tiers. A tiered targeting campaign adjusted for the level of recency has more potential for returns than broad, undifferentiated outreach in order to increase revenue from proven past purchasing behavior.
+
+### Priority 4: Prioritize view-to-cart volume alongside cart-to-purchase rate
 While cart-to-purchase has higher percentage drop-off, view-to-cart accounts for larger session loss (3.3M). A small percentage-point improvement here would recover more total sessions than an equivalent improvement for the cart-to-purchase rate.
 
----
+**Worth Exploratory Investigation**
+- Zero Conversion Categories: had over 700 product views but no purchases, worth manual review of product pages within the category to determine if there is potential friction preventing purchases
+- Category 2151191071051219817's outlier high retention: worth determining what this category of products includes to identify potential drivers to inform future product strategy elsewhere.
+
+
+
 ## 10. Tech Stack & Reproducibility
 - **Cleaning:** Python (pandas)
 - **Database:** PostgreSQL
@@ -206,6 +217,6 @@ While cart-to-purchase has higher percentage drop-off, view-to-cart accounts for
 4. Run the cleaning script, then the loading script
 5. Run the SQL files in `sql/` against the loaded database
 
----
+
 ## 11. Why This Project
 This project demonstrates end-to-end funnel and revenue analysis on large and messy real-world dataset, including data-quality investigation and judgment calls, SQL-based business-question answering, and translating findings into evidence-based recommendations.
