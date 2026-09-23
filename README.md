@@ -1,6 +1,6 @@
 # **Ecommerce Funnel & Cohort Analysis**
 ## Key Findings and Recommendations
-A funnel and revenue analysis of a 20M+ event e-commerce dataset, finding cart-to-purchase drop off (84%) is steeper than view-to-cart drop off (77%). Cart abandonment is relatively flat across all price tiers, suggesting product pricing strategy is not a major hindrance to conversion.
+A funnel and revenue analysis of a 20M+ event e-commerce dataset, finding cart-to-purchase drop off (84%) is steeper than view-to-cart drop off (77%). Cart abandonment is relatively flat across all price tiers, suggesting product pricing strategy is not a major hindrance to conversion. New user acquisition is on an overall decline through the dataset timeline, so prioritizing focus on increasing new users is key in increasing top-of-funnel revenue potential.
 
 ## 1. Dataset Overview
 This project is an analysis of the user behavior within the REES46 "eCommerce Events History in Cosmetics Shop" from Kaggle. It contains 20M+ lines of data captured from October 2019 through February 2020.
